@@ -2,7 +2,7 @@ from engine import Board
 
 
 user = ""
-AI = ""
+git AI = ""
 
 
 def starting():
