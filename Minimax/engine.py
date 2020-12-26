@@ -18,14 +18,14 @@ class Board:
 
         return emptyBoxes
     
-    def findPossiblities(self, position, xo):
+    def findPossiblities(self, position):
 
         emptyBoxes = self.emptyBoxes(position)
 
         possibilities = []
 
         for index in emptyBoxes:
-            self.position[index] = f"{xo}"
+            self.position[index] = f"{self.AI}"
             possibilities.append(self.position[:])
             self.position[index] = " "
 
@@ -73,24 +73,28 @@ class Board:
             return 0
         
         
-            
-'''
-
-    def createTree(self, position):
+    def createTree(self):
         
         possibilityTree = []
+        possibilityTree.append(self.position)
+        for i in range(len(self.emptyBoxes(positions))):
+            temp = []
+            for x in possibilityTree[-1]:
+                temp.append(self.findPossiblities(x))
+            possibilityTree.append(temp)
+           
 
-        possibilityTree.append(position)
+            
 
-        possibilityTree.append(self.findPossiblities(position))
 
-'''
-    
+
+
 # the ops are o
 
 
 
 position = [" ", "X", " ", "O", "O", "O", " ", "X", " "]
 Board = Board(position, "X", "O")
-print(Board.evaluatePosition(position))
+Board.createTree()
+
 
