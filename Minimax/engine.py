@@ -82,7 +82,7 @@ class Board:
             for x in possibilityTree[-1]:
                 temp.append(self.findPossiblities(x))
             possibilityTree.append(temp)
-           
+
 
             
 
