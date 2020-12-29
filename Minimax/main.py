@@ -75,6 +75,8 @@ class Board:
                     return 1
         if self.emptyBoxes(position) == []:
             return 0
+
+        
         return None
         
     def minimaxAlgorithm(self, position, maximizing):
@@ -95,12 +97,13 @@ class Board:
                 evaluations.append(evaluation)
             return min(evaluations)
             
+
     def bestMove(self):
         if self.evaluatePosition(self.position) == None:
             bestMove = []
 
             for position in self.findPossibilities(self.position, self.AI):
-                evaluation = self.minimaxAlgorithm(position, True)
+                evaluation = self.minimaxAlgorithm(position, False)
                 position.append(evaluation)
                 bestMove.append(position)
             
@@ -154,18 +157,24 @@ def X(position):
         print("_______________")
         print(" % s  |  % s  |  % s  " % (position[0], position[1], position[2]))
         print("_______________")
+        print("\n")
+
         
         if move.evaluatePosition(position) == 1:
+            print("\n")
             print("I win")
         if move.evaluatePosition(position) == 0:
+            print("\n")
             print("Draw")
         if move.evaluatePosition(position) == -1:
+            print("\n")
             print("Good Job")
   
 
     if move.evaluatePosition(position) == None:
         newPosition = move.bestMove()
         eval = move.evaluatePosition(newPosition)
+        
         print("\n")
         print(" % s  |  % s  |  % s  " % (newPosition[6], newPosition[7], newPosition[8]))
         print("______________")
@@ -173,17 +182,26 @@ def X(position):
         print("_______________")
         print(" % s  |  % s  |  % s  " % (newPosition[0], newPosition[1], newPosition[2]))
         print("_______________")
+        print("\n")
+        
         if eval == 1:
+            print("\n")
             print("I win")
         elif eval == 0:
             print("Draw")
+            print("\n")
         elif eval== -1:
+            print("\n")
             print("Good Job")
+        
+
         if eval == None:
             inputUnderstood = False
             while inputUnderstood == False:
                 move = input("Which move would you like to make? ")
-                if newPosition[int(move)-1] == " ":
+                if int(move) - 1 not in [0,1,2,3,4,5,6,7,8]:
+                    print("That square is out of range, pick another square. (1-9)")
+                elif newPosition[int(move)-1] == " ":
                     newPosition[int(move)-1] = user
                     inputUnderstood = True
                 else:
@@ -196,13 +214,20 @@ def O():
 
     print("\n")
     print("    |     |     ")
-    print("______________")
-    print("    |     |     ")
     print("_______________")
     print("    |     |     ")
     print("_______________")
+    print("    |     |     ")
+    print("_______________")
+    print("\n")
 
-    move = input("Which move would you like to make? ")
+    inputUnderstood = False
+    while inputUnderstood == False:
+        move = input("Which move would you like to make? ")
+        if int(move) - 1 not in [0,1,2,3,4,5,6,7,8]:
+                    print("Move not in range")
+        else:
+            inputUnderstood = True
     startingPosition[int(move) - 1] = user
 
 
