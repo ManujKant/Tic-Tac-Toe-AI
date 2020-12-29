@@ -1,3 +1,5 @@
+import random
+
 class Board:
 
     def __init__(self, position, AI, user):
@@ -96,14 +98,28 @@ class Board:
     def bestMove(self):
         if self.evaluatePosition(self.position) == None:
             bestMove = []
-            eval = -2
+
             for position in self.findPossibilities(self.position, self.AI):
                 evaluation = self.minimaxAlgorithm(position, True)
-                if evaluation > eval:
-                    eval = evaluation
-                    bestMove = position
-        
-            return bestMove
+                position.append(evaluation)
+                bestMove.append(position)
+            
+            wins = [i for i in bestMove if i[-1] == 1]
+            draws = [i for i in bestMove if i[-1] == 0]
+            losses = [i for i in bestMove if i[-1] == -1]
+
+            if len(wins) != 0:
+                finalMove =  random.choice(wins)
+                return finalMove
+            
+            elif len(draws) != 0:
+                finalMove =  random.choice(draws)
+                return finalMove
+            
+            elif len(losses) != 0:
+                finalMove =  random.choice(losses)
+                return finalMove
+
         else:
             result = self.evaluatePosition(self.position)
             return result
@@ -194,6 +210,6 @@ def O():
 
 
 if AI == "X":
-    X()
+    X([" ", " ", " ", " ", " ", " ", " ", " ", " "])
 else:
     O()
