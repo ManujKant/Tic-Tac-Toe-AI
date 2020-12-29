@@ -11,23 +11,25 @@ class Board:
 
         emptyBoxes = []
         count = -1
-        for box in self.position:
+        for box in position:
             count += 1
             if box == " ":
                 emptyBoxes.append(count)
 
         return emptyBoxes
     
-    def findPossiblities(self, position):
+    def findPossibilities(self, position, value):
 
         emptyBoxes = self.emptyBoxes(position)
 
         possibilities = []
 
         for index in emptyBoxes:
-            self.position[index] = f"{self.AI}"
-            possibilities.append(self.position[:])
-            self.position[index] = " "
+            position[index] = f"{value}"
+            possibilities.append(position[:])
+            position[index] = " "
+
+        return possibilities
 
     def evaluatePosition(self, position):
         # rows
@@ -71,30 +73,33 @@ class Board:
                     return 1
         if self.emptyBoxes(position) == []:
             return 0
+        return None
         
-        
-    def createTree(self):
-        
-        possibilityTree = []
-        possibilityTree.append(self.position)
-        for i in range(len(self.emptyBoxes(positions))):
-            temp = []
-            for x in possibilityTree[-1]:
-                temp.append(self.findPossiblities(x))
-            possibilityTree.append(temp)
-
-
+    def minimaxAlgorithm(self, position, maximizing):
+        if self.evaluatePosition(position) != None:
+            return self.evaluatePosition(position)
             
+        if maximizing == True:
+            evaluations = []
+            for possibility in self.findPossibilities(position, self.AI):
+                evaluation = self.minimaxAlgorithm(possibility, False)
+                evaluations.append(evaluation)
+            return max(evaluations)
 
-
-
-
-# the ops are o
-
-
-
-position = [" ", "X", " ", "O", "O", "O", " ", "X", " "]
-Board = Board(position, "X", "O")
-Board.createTree()
-
-
+        else:
+            evaluations = []
+            for possibility in self.findPossibilities(position, self.user):
+                evaluation = self.minimaxAlgorithm(possibility, True)
+                evaluations.append(evaluation)
+            return min(evaluations)
+            
+    def bestMove(self):
+        bestMove = []
+        eval = -2
+        for position in self.findPossibilities(self.position, self.AI):
+            evaluation = self.minimaxAlgorithm(position, True)
+            if evaluation > eval:
+                eval = evaluation
+                bestMove = position
+        
+        return bestMove

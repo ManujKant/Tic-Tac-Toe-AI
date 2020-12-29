@@ -1,10 +1,6 @@
 from engine import Board
 
 
-user = ""
-git AI = ""
-
-
 def starting():
     starting = input("Do you want to start (Y/N)? ").upper()
     inputUnderstood = False
@@ -20,6 +16,7 @@ def starting():
         else:
             starting = input("Could not understand your response. Please type Y or N. Do you want to start? ").upper()
         return user, AI
+    
 
 
 
@@ -37,8 +34,5 @@ def main(position):
 
 
 
-startingPosition = [" ", " ", " ", "X", "X", "O", "X", "O", " "]
-
-
 if __name__ == "__main__":
-    main(startingPosition)
+    starting()
