@@ -152,23 +152,23 @@ def X(position):
     if move.evaluatePosition(position) != None:
         print("\n")
         print(" % s  |  % s  |  % s  " % (position[6], position[7], position[8]))
-        print("______________")
+        print("_______________")
         print(" % s  |  % s  |  % s  " % (position[3], position[4], position[5]))
         print("_______________")
         print(" % s  |  % s  |  % s  " % (position[0], position[1], position[2]))
-        print("_______________")
-        print("\n")
-
         
         if move.evaluatePosition(position) == 1:
             print("\n")
-            print("I win")
+            print("I WIN")
+            print("\n")
         if move.evaluatePosition(position) == 0:
             print("\n")
             print("Draw")
+            print("\n")
         if move.evaluatePosition(position) == -1:
             print("\n")
             print("Good Job")
+            print("\n")
   
 
     if move.evaluatePosition(position) == None:
@@ -177,22 +177,23 @@ def X(position):
         
         print("\n")
         print(" % s  |  % s  |  % s  " % (newPosition[6], newPosition[7], newPosition[8]))
-        print("______________")
+        print("_______________")
         print(" % s  |  % s  |  % s  " % (newPosition[3], newPosition[4], newPosition[5]))
         print("_______________")
         print(" % s  |  % s  |  % s  " % (newPosition[0], newPosition[1], newPosition[2]))
-        print("_______________")
-        print("\n")
-        
+
         if eval == 1:
             print("\n")
-            print("I win")
+            print("I WIN")
+            print("\n")
         elif eval == 0:
+            print("\n")
             print("Draw")
             print("\n")
         elif eval== -1:
             print("\n")
             print("Good Job")
+            print("\n")
         
 
         if eval == None:
@@ -218,7 +219,6 @@ def O():
     print("    |     |     ")
     print("_______________")
     print("    |     |     ")
-    print("_______________")
     print("\n")
 
     inputUnderstood = False
