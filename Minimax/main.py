@@ -152,7 +152,7 @@ def X(position):
     if move.evaluatePosition(position) != None:
         print("\n")
         print(" % s  |  % s  |  % s  " % (position[6], position[7], position[8]))
-        print("______________")
+        print("_______________")
         print(" % s  |  % s  |  % s  " % (position[3], position[4], position[5]))
         print("_______________")
         print(" % s  |  % s  |  % s  " % (position[0], position[1], position[2]))
