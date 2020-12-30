@@ -152,7 +152,7 @@ def X(position):
     if move.evaluatePosition(position) != None:
         print("\n")
         print(" % s  |  % s  |  % s  " % (position[6], position[7], position[8]))
-        print("_______________")
+        print("______________")
         print(" % s  |  % s  |  % s  " % (position[3], position[4], position[5]))
         print("_______________")
         print(" % s  |  % s  |  % s  " % (position[0], position[1], position[2]))
@@ -181,6 +181,7 @@ def X(position):
         print(" % s  |  % s  |  % s  " % (newPosition[3], newPosition[4], newPosition[5]))
         print("_______________")
         print(" % s  |  % s  |  % s  " % (newPosition[0], newPosition[1], newPosition[2]))
+        print("\n")
 
         if eval == 1:
             print("\n")
@@ -199,7 +200,7 @@ def X(position):
         if eval == None:
             inputUnderstood = False
             while inputUnderstood == False:
-                move = input("Which move would you like to make? ")
+                move = input("What move would you like to make? ")
                 if int(move) - 1 not in [0,1,2,3,4,5,6,7,8]:
                     print("That square is out of range, pick another square. (1-9)")
                 elif newPosition[int(move)-1] == " ":
@@ -223,7 +224,7 @@ def O():
 
     inputUnderstood = False
     while inputUnderstood == False:
-        move = input("Which move would you like to make? ")
+        move = input("What move would you like to make? ")
         if int(move) - 1 not in [0,1,2,3,4,5,6,7,8]:
                     print("Move not in range")
         else:
